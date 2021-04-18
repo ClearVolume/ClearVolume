@@ -292,7 +292,8 @@ maxproj_render(					 __global uint	*d_output,
 	
 
 	// lookup in transfer function texture:
-  const float4 color = brightness*read_imagef(transferColor4,transferSampler, (float2)(mappedVal,0.0f));
+	// AW: I deleted the const modifier here; this allows ClearVolume to work on Intel openCL driver
+ float4 color = brightness*read_imagef(transferColor4,transferSampler, (float2)(mappedVal,0.0f));
   
   // Alpha pre-multiply:
   color.x = color.x*color.w;
